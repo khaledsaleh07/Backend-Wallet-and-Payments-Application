@@ -19,6 +19,12 @@ const router = require("./routes/promotionRoutes");
 
 app.use("/api/promotion", router);
 
+const router = require("./routes/notificationRoutes");
+
+app.use("/api/notification", router);
+
+
+
 //testing api
 app.get("/", (req, res) => {
   res.json({ message: "Hello from API!" });

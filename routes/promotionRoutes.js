@@ -2,9 +2,9 @@ const productController = require("../controllers/promotionController");
 
 const router = require("express").Router();
 
-router.post("/addProduct", promotionController.addPromotions);
+router.post("/addPromotion", promotionController.addPromotions);
 
-router.get("/allProduct", promotionController.getAllPromotions);
+router.get("/allPromotion", promotionController.getAllPromotions);
 
 router.get("/published", promotionController.getPublishedPromotions);
 
