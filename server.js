@@ -15,14 +15,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //routers
-const router = require("./routes/promotionRoutes");
+const promotionRouter = require("./routes/promotionRoutes");
 
-app.use("/api/promotion", router);
+app.use("/api/promotion", promotionRouter);
 
-const router = require("./routes/notificationRoutes");
+const notificationRouter = require("./routes/notificationRoutes");
 
-app.use("/api/notification", router);
-
+app.use("/api/notification", notificationRouter);
 
 
 //testing api

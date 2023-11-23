@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require(".");
+const db = require("../models");
 
 module.exports = (sequelize, DataTypes) => {
   const Notification = sequelize.define('notification', {

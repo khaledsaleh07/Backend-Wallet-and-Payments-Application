@@ -1,25 +1,20 @@
 const { DataTypes } = require("sequelize");
-const { sequelize } = require(".");
+const { sequelize } = require('sequelize'); // Adjust the path accordingly
 
 module.exports = (sequelize, DataTypes) => {
-
-
-const connect =require ('../config/dbconfig')
-
-
-const User = sequelize.define('user', {
+  const User = sequelize.define('user', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
     balance_usd: {
-      type: DataTypes.DECIMAL(10,2),
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
       defaultValue: 0.00
     },
     balance_usdt: {
-      type: DataTypes.DECIMAL(10,2),
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
       defaultValue: 0.00
     },
@@ -38,9 +33,7 @@ const User = sequelize.define('user', {
       allowNull: false
     },
     status: {
-      type: DataTypes.ENUM('active',
-   
-  'inactive'),
+      type: DataTypes.ENUM('active', 'inactive'),
       allowNull: false,
       defaultValue: 'active'
     },
@@ -50,6 +43,8 @@ const User = sequelize.define('user', {
       defaultValue: 'user'
     }
   });
-  sequelize.sync({ force: true }).then(() => {
+
+  sequelize.sync({ force: false }).then(() => {
     console.log('Tables created successfully!');
-  })}
+  });
+};

@@ -1,5 +1,10 @@
 const { DataTypes } = require("sequelize");
-const { sequelize } = require(".");
+const { sequelize } = require('sequelize'); // Adjust the path accordingly
+const User = require("./usersModels"); // Import the User model from userModel.js
+const Transaction = require("./transactionsModels"); // Import the User model from userModel.js
+  
+
+
 
 module.exports = (sequelize, DataTypes) => {
 

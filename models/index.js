@@ -1,15 +1,33 @@
-db.Sequelize = Sequelize;
-db.sequelize = sequelize;
+const dbconfig = require('../config/dbconfig');
 
-// Name of the table in the database
-db.products = require('./promotionModels.js')(sequelize, DataTypes);
-db.reviews = require('./transactionsModels.js')(sequelize, DataTypes);
-db.reviews = require('./usersModels.js')(sequelize, DataTypes);
+const { Sequelize, DataTypes } = require('sequelize');
 
-// If this is true, you will lose all data in the database every time
-db.sequelize.sync({ force: false })
-    .then(() => {
-        console.log('Database schema synchronized successfully!');
-    });
+const sequelize = new Sequelize(
+    dbconfig.db,
+    dbconfig.user,
+    dbconfig.password, {
+        host: dbconfig.host,
+        dialect: dbconfig.dialect,
+        operatorsAliases: false,
+        pool: {
+            max: dbconfig.max,
+            min: dbconfig.min,
+            acquire: dbconfig.acquire,
+            idle: dbconfig.pool.idle
+        }
+    }
+);
 
-module.exports = db;
+
+
+
+
+sequelize.authenticate()
+   .then(() => {
+       console.log('Connected to database successfully!');
+   })
+   .catch(err => {
+       console.error('Error connecting to database:', err);
+   });
+
+module.exports = sequelize;
