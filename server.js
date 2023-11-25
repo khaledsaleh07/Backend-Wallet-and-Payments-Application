@@ -1,37 +1,33 @@
-const express = require("express");
-const cors = require("cors");
+import express from 'express';
+import sequilize from './config/dbconfig.js';
+import dotenv from 'dotenv';
+import cors from 'cors';
+
+
+
+import notificationRoutes from "./routes/notificationRoutes.js";
+import promotionRoutes from "./routes/promotionRoutes.js";
+import userRoutes from "./routes/userRoutes.js"
 
 const app = express();
-
-var corOptions = {
-  origin: "https://localhost:8001",
-};
-
-// middleware
-app.use(cors(corOptions));
-
-app.use(express.json());
-
-app.use(express.urlencoded({ extended: true }));
-
-//routers
-const promotionRouter = require("./routes/promotionRoutes");
-
-app.use("/api/promotion", promotionRouter);
-
-const notificationRouter = require("./routes/notificationRoutes");
-
-app.use("/api/notification", notificationRouter);
-
-
-//testing api
-app.get("/", (req, res) => {
-  res.json({ message: "Hello from API!" });
-});
-
 //port
 
-const PORT = process.env.PORT || 8000;
+const PORT =  8000;
+sequilize.sync()   
+
+// middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors("*"));
+
+app.get('/',(req,res)=>{
+ res.send("hello world")
+})
+
+
+app.use('/notification', notificationRoutes)
+app.use('/promotion', promotionRoutes)
+app.use('/user', userRoutes)
 
 //server
 

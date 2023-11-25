@@ -1,8 +1,8 @@
-const { DataTypes } = require("sequelize");
-const { sequelize } = require('sequelize'); // Adjust the path accordingly
+import { Sequelize, DataTypes } from 'sequelize';
 
-module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('user', {
+import db from '../config/dbconfig.js';
+
+  const User = db.define('user', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -44,7 +44,5 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-  sequelize.sync({ force: false }).then(() => {
-    console.log('Tables created successfully!');
-  });
-};
+
+export default User

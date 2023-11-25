@@ -1,16 +1,22 @@
-const productController = require("../controllers/notificationController");
+import { Router } from 'express';
+const router = Router();
 
-const router = require("express").Router();
+import { getAllNotifications ,createNotification, getOneNotification, updateNotification, deleteNotification} from "../controllers/notificationController.js";
 
-router.post("/addNotification", notificationController.createNotification);
-
-router.get("/allNotification", notificationController.ggetAllNotifications);
-
-router.get("/:id", notificationController.getOneNotification);
-
-router.put("/:id", notificationController.updateNotification);
-
-router.delete("/id", notificationController.deleteNotification);
+  
+  
 
 
-module.exports=router;
+
+router.post("/addNotification", createNotification);
+
+router.get("/allNotification", getAllNotifications);
+
+router.get("/:id",getOneNotification);
+
+router.put("/:id", updateNotification);
+
+router.delete("/:id",deleteNotification);
+
+
+export default router

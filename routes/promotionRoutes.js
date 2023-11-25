@@ -1,18 +1,23 @@
-const productController = require("../controllers/promotionController");
+import { Router } from 'express';
+const router = Router();
 
-const router = require("express").Router();
+import { addPromotions,
+   getAllPromotions,
+   getOnePromotions,
+   updatePromotions,
+   deletePromotions,
+   getPublishedPromotions,} from "../controllers/promotionController.js"
 
-router.post("/addPromotion", promotionController.addPromotions);
+router.post("/addPromotion", addPromotions);
 
-router.get("/allPromotion", promotionController.getAllPromotions);
+router.get("/allPromotion", getAllPromotions);
 
-router.get("/published", promotionController.getPublishedPromotions);
+router.get("/published", getPublishedPromotions);
 
-router.get("/:id", promotionController.getOnePromotions);
+router.get("/:id", getOnePromotions);
 
-router.put("/:id", promotionController.updatePromotions);
+router.put("/:id", updatePromotions);
 
-router.delete("/id", promotionController.deletePromotions);
+router.delete("/id", deletePromotions);
 
-
-module.exports=router;
+export default router;

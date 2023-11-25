@@ -1,11 +1,10 @@
-const { DataTypes } = require("sequelize");
-const User = require("./usersModels");
-const Promotion = require("./promotionModels");
-const { sequelize } = require('sequelize'); // Adjust the path accordingly
+import { Sequelize, DataTypes } from 'sequelize';
+import User from './usersModels.js';
+import Promotion from './promotionModels.js';
+import db from '../config/dbconfig.js';
 
 
-module.exports = (sequelize, DataTypes) => {
-  const Transaction = sequelize.define('transaction', {
+  const Transaction = db.define('transaction', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -49,24 +48,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-  Promotion.hasMany(Transaction, {
-    foreignKey: 'promotion_id'
-  });
 
-  Transaction.belongsTo(User, {
-    foreignKey: 'sender_id',
-    as: 'Sender'
-  });
 
-  Transaction.belongsTo(User, {
-    foreignKey: 'recipient_id',
-    as: 'Recipient'
-  });
-
-  Transaction.belongsTo(Promotion, {
-    foreignKey: 'promotion_id'
-  });
-
-  return Transaction;  // Ensure that you return the model
-
-}
+export default Transaction;

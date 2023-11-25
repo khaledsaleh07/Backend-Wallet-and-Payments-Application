@@ -1,14 +1,11 @@
-const { DataTypes } = require('sequelize');
-const { sequelize } = require('./index'); // Adjust the path accordingly
-const User = require('./usersModels');
-const Transaction = require('./transactionsModels');
+import { Sequelize, DataTypes } from 'sequelize';
 
-// Make sure sequelize is properly initialized before defining models
-if (!sequelize) {
-  throw new Error('Sequelize instance is not defined. Make sure it is properly initialized.');
-}
+import db from '../config/dbconfig.js';
 
-const Promotion = sequelize.define('Promotion', {
+
+
+
+const Promotion = db.define('promotion', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -18,10 +15,7 @@ const Promotion = sequelize.define('Promotion', {
   user_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    references: {
-      model: User,
-      key: 'id'
-    }
+
   },
   promotion_description: {
     type: DataTypes.TEXT,
@@ -46,6 +40,6 @@ const Promotion = sequelize.define('Promotion', {
   }
 });
 
-Promotion.hasMany(Transaction, { foreignKey: 'promotion_id', as: 'Transactions' });
 
-module.exports = Promotion;
+
+  export default Promotion;
