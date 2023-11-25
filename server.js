@@ -2,6 +2,7 @@ import express from 'express';
 import sequilize from './config/dbconfig.js';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import db from "./config/dbconfig.js"
 
 
 
@@ -23,6 +24,7 @@ app.use(cors("*"));
 app.get('/',(req,res)=>{
  res.send("hello world")
 })
+
 
 
 app.use('/notification', notificationRoutes)

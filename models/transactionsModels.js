@@ -1,35 +1,52 @@
+// transactionsModels.js
 import { DataTypes } from 'sequelize';
-import db from '../config/dbconfig.js'; 
-import User from './usersModels.js'; 
-import Promotion from './promotionModels.js'; 
+import db from '../config/dbconfig.js';
+import User from './usersModels.js';
+import Promotion from './promotionModels.js';
 
 const Transaction = db.define('transaction', {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-    allowNull: false,
-  },
+ id: {
+   type: DataTypes.INTEGER,
+   primaryKey: true,
+   autoIncrement: true,
+   allowNull: false,
+ },
+ sender_id: {
+   type: DataTypes.INTEGER,
+   allowNull: false,
+   onDelete: 'CASCADE',
+   onUpdate: 'CASCADE',
+   references:{
+    model:User,
+    key:"sender_id",
+    as : "sender_id",
 
-  amount: {
-    type: DataTypes.DECIMAL(10, 2),
-    allowNull: false
-  },
-  date: {
-    type: DataTypes.DATE,
-    allowNull: false
-  },
-  amount_type: {
-    type: DataTypes.ENUM('credit', 'debit'),
-    allowNull: false
-  },
+   }
+ },
+ receiver_id: {
+   type: DataTypes.INTEGER,
+   allowNull: false,
+ },
+ date: {
+   type: DataTypes.DATE,
+   allowNull: false,
+ },
+ amountType: {
+   type: DataTypes.ENUM("usd", "usdt"),
+   allowNull: false,
+ },
+ amount: {
+   type: DataTypes.FLOAT,
+   allowNull: false,
+ },
+ promotion_id: {
+   type: DataTypes.INTEGER,
+   allowNull: false,
+   onDelete: 'CASCADE',
+   onUpdate: 'CASCADE',
+ },
 });
 
-// Define associations
-Transaction.belongsTo(User, { foreignKey: 'sender_id' });
-Transaction.belongsTo(Promotion, { foreignKey: 'promotion_id' });
-
-await db.sync({ force: false });
 
 
 export default Transaction;

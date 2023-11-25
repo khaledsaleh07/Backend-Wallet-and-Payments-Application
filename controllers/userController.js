@@ -1,4 +1,4 @@
-import Users from "../models/usersModels.js";
+import User from "../models/usersModels.js";
 // 1 - add user
 export const addUser = async (req, res) => {
   const {
@@ -12,7 +12,7 @@ export const addUser = async (req, res) => {
   } = req.body;
 
   try {
-    const user = await Users.create({
+    const user = await User.create({
       userId,
       userName,
       email,

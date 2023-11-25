@@ -1,45 +1,47 @@
-import { Sequelize, DataTypes } from 'sequelize';
-
+// promotionModels.js
+import { DataTypes } from 'sequelize';
 import db from '../config/dbconfig.js';
-
-
-
+import User from "./usersModels.js"
 
 const Promotion = db.define('promotion', {
   id: {
     type: DataTypes.INTEGER,
-    primaryKey: true,
     autoIncrement: true,
-  
+    primaryKey: true,
+    
   },
   user_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
-
+    references: {
+      model: User, 
+      key: 'id',
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
   },
+  
   promotion_description: {
     type: DataTypes.TEXT,
-    allowNull: false
+    allowNull: false,
   },
   start_date: {
     type: DataTypes.DATE,
-    allowNull: false
+    allowNull: false,
   },
   end_date: {
     type: DataTypes.DATE,
-    allowNull: false
+    allowNull: false,
   },
   promotion_amount: {
     type: DataTypes.DECIMAL(10, 2),
-    allowNull: false
+    allowNull: false,
   },
   promo_code: {
     type: DataTypes.STRING(255),
     allowNull: false,
-    unique: true
-  }
+    unique: true,
+  },
 });
 
-
-
-  export default Promotion;
+export default Promotion;
