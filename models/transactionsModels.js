@@ -43,4 +43,4 @@ const Transaction = db.define('transaction', {
 
 
 
-export default Transaction;
+export default Transaction

@@ -10,6 +10,7 @@ import relation from  './models/index.js'
 import notificationRoutes from "./routes/notificationRoutes.js";
 import promotionRoutes from "./routes/promotionRoutes.js";
 import userRoutes from "./routes/userRoutes.js"
+import transactionRouter from "./routes/transactionRoutes.js"
 
 const app = express();
 //port
@@ -27,7 +28,7 @@ app.get('/',(req,res)=>{
 })
 
 
-
+app.use('/transaction', transactionRouter )
 app.use('/notification', notificationRoutes)
 app.use('/promotion', promotionRoutes)
 app.use('/user', userRoutes)
