@@ -13,12 +13,7 @@ const Promotion = db.define('promotion', {
   user_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    references: {
-      model: User, 
-      key: 'id',
-    },
-    onUpdate: 'CASCADE',
-    onDelete: 'CASCADE',
+
   },
   
   promotion_description: {

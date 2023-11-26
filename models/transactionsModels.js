@@ -14,14 +14,7 @@ const Transaction = db.define('transaction', {
  sender_id: {
    type: DataTypes.INTEGER,
    allowNull: false,
-   onDelete: 'CASCADE',
-   onUpdate: 'CASCADE',
-   references:{
-    model:User,
-    key:"sender_id",
-    as : "sender_id",
 
-   }
  },
  receiver_id: {
    type: DataTypes.INTEGER,
@@ -46,6 +39,7 @@ const Transaction = db.define('transaction', {
    onUpdate: 'CASCADE',
  },
 });
+
 
 
 

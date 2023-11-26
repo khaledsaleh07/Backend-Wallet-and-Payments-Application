@@ -3,6 +3,7 @@ import sequilize from './config/dbconfig.js';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import db from "./config/dbconfig.js"
+import relation from  './models/index.js'
 
 
 

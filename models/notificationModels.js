@@ -16,13 +16,7 @@ const Notification = db.define('notification', {
   transaction_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
-    references: {
-      model: Transaction,
-      key: 'id',
-      as: 'transaction_id'
-    }
+  
   },
   receiver_id: {
     type: DataTypes.INTEGER,

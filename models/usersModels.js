@@ -1,20 +1,16 @@
 // usersModels.js
 import { DataTypes } from 'sequelize';
 import db from '../config/dbconfig.js';
+import Transaction from "./transactionsModels.js"
 
 const User = db.define('user', {
  id: {
    type: DataTypes.INTEGER,
    primaryKey: true,
-   autoIncrement: true
+   autoIncrement: true,
+   
  },
- sender_id: {
-   type: DataTypes.INTEGER,
-   allowNull: false,
-   onDelete: 'CASCADE',
-   onUpdate: 'CASCADE',
 
- },
  balance_usd: {
    type: DataTypes.DECIMAL(10, 2),
    allowNull: false,
@@ -50,6 +46,7 @@ const User = db.define('user', {
    defaultValue: 'user'
  }
 });
+
 
 
 
