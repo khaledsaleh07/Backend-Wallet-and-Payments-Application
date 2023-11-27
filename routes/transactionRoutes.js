@@ -13,7 +13,7 @@ router.get("/allTransaction", getAllTransaction);
 
 router.get("/:id", getOneTransaction);
 
-router.put("/:id",  updateTransaction);
+router.put("/update/:id",  updateTransaction);
 
 router.delete("/id", deleteTransaction);
 
