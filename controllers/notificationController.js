@@ -1,4 +1,4 @@
-import Notification from "../models/index.js";
+import Notification from "../models/notificationModels.js";
 
 export async function getAllNotifications(req, res) {
   try {
@@ -22,10 +22,10 @@ export async function getAllNotifications(req, res) {
 
 // 1-Create notification
 export const createNotification = async (req, res) => {
-  const { status, received_id, transaction_id } = req.body;
+  const { status, receiver_id, transaction_id } = req.body; 
   const newNotification = {
     status,
-    received_id,
+    receiver_id,
     transaction_id,
   };
 
@@ -33,9 +33,11 @@ export const createNotification = async (req, res) => {
     const createdNotification = await Notification.create(newNotification);
     res.status(200).send(createdNotification);
   } catch (err) {
-    res.status(500).json({ message: "wrong notification" });
+    console.error(err); // Log the error for debugging
+    res.status(500).json({ message: "Failed to create notification" });
   }
 };
+
 
 // 3-Get single notification
 export const getOneNotification = async (req, res) => {

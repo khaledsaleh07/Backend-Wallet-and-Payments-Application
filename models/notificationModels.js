@@ -11,7 +11,8 @@ const Notification = db.define('notification', {
   },
   status: {
     type: DataTypes.BOOLEAN,
-    allowNull: false
+    allowNull: false,
+    defaultValue: false
   },
   transaction_id: {
     type: DataTypes.INTEGER,

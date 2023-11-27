@@ -18,6 +18,6 @@ router.get("/:id", getOnePromotions);
 
 router.put("/:id", updatePromotions);
 
-router.delete("/id", deletePromotions);
+router.delete("/:id", deletePromotions);
 
 export default router;

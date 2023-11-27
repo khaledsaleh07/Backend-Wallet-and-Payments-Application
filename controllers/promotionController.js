@@ -1,6 +1,6 @@
 
 
-import Promotion from "../models/index.js";
+import Promotion from "../models/promotionModels.js";
 
 // Create main model
 const Id = Promotion.id; // Access the 'id' property of the 'Promotions' model
