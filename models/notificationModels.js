@@ -22,6 +22,8 @@ const Notification = db.define('notification', {
     type: DataTypes.INTEGER,
     allowNull: false
   }
+
+
 });
 Notification.belongsTo(Transaction);
 Transaction.hasMany(Notification);

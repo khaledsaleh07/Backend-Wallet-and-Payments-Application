@@ -24,7 +24,7 @@ export async function addPromotions (req, res)  {
     promo_code: req.body.promo_code,
   };
 
-  const promotions = await Promotions.create(info);
+  const promotions = await Promotion.create(info);
   res.status(200).send(promotions);
 };
 

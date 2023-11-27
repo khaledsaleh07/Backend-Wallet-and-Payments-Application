@@ -2,7 +2,7 @@ import Notification from "../models/index.js";
 
 export async function getAllNotifications(req, res) {
   try {
-    let getdata = await Notification.Notification.findAll();
+    let getdata = await Notification.findAll();
     if (getdata) {
       res.json({
         success: true,
