@@ -26,8 +26,6 @@ const Notification = db.define('notification', {
 
 
 });
-Notification.belongsTo(Transaction);
-Transaction.hasMany(Notification);
 
 
 export default Notification;

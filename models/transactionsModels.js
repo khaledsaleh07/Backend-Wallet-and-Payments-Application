@@ -38,11 +38,7 @@ const Transaction = db.define('transaction', {
   
  },
 });
-Transaction.belongsTo(User);
-User.hasMany(Transaction);
 
-Transaction.belongsTo(Promotion);
-Promotion.hasMany(Transaction);
 
 
 
