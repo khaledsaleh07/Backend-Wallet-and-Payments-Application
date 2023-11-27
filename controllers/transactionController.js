@@ -1,4 +1,4 @@
-import Transaction from "../models/index.js";
+import Transaction from "../models/transactionsModels.js";
 
 // Create main model
 const Id = Transaction.id; // Access the 'id' property of the 'Promotions' model

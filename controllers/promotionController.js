@@ -30,34 +30,34 @@ export async function addPromotions (req, res)  {
 
 // 2- Get all promotions
 export async function getAllPromotions (req, res) {
-  const promotions = await Promotions.findAll();
+  const promotions = await Promotion.findAll();
   res.status(200).send(promotions);
 };
 
 // 3- Get single promotion
 export async function getOnePromotions(req, res) {
   const id = parseInt(req.params.id); // Ensure the ID is parsed as an integer
-  const promotion = await Promotions.findOne({ where: { id } });
+  const promotion = await Promotion.findOne({ where: { id } });
   res.status(200).send(promotion);
 };
 
 // 4- Update single promotion
 export async function updatePromotions  (req, res)  {
   const id = parseInt(req.params.id); // Ensure the ID is parsed as an integer
-  const updatedPromotion = await Promotions.update(req.body, { where: { id } });
+  const updatedPromotion = await Promotion.update(req.body, { where: { id } });
   res.status(200).send(updatedPromotion);
 };
 
 // 5- Delete promotion by ID
 export async function deletePromotions  (req, res) {
   const id = parseInt(req.params.id); // Ensure the ID is parsed as an integer
-  await Promotions.destroy({ where: { id } });
+  await Promotion.destroy({ where: { id } });
   res.status(200).send("Promotion has been deleted");
 };
 
 // 6- Get published promotions
 export async function getPublishedPromotions  (req, res) {
-  const publishedPromotions = await Promotions.findAll({ where: { published: true } });
+  const publishedPromotions = await Promotion.findAll({ where: { published: true } });
   res.status(200).send(publishedPromotions);
 };
 

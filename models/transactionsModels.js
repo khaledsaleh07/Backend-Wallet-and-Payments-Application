@@ -35,11 +35,14 @@ const Transaction = db.define('transaction', {
  promotion_id: {
    type: DataTypes.INTEGER,
    allowNull: false,
-   onDelete: 'CASCADE',
-   onUpdate: 'CASCADE',
+  
  },
 });
+Transaction.belongsTo(User);
+User.hasMany(Transaction);
 
+Transaction.belongsTo(Promotion);
+Promotion.hasMany(Transaction);
 
 
 
