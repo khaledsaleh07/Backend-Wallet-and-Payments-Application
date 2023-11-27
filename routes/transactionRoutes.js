@@ -15,6 +15,6 @@ router.get("/:id", getOneTransaction);
 
 router.put("/update/:id",  updateTransaction);
 
-router.delete("/id", deleteTransaction);
+router.delete("/:TransactionId", deleteTransaction);
 
 export default router;

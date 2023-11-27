@@ -9,4 +9,8 @@ router.get('/userId/:id', getUserById);
 router.delete('/deleteId/:userId', deleteUser);
 router.put('/:userId', updateUser);
 
+
+// router.post('/signin',signInUser)
+
+
 export default router;

@@ -12,10 +12,13 @@ import promotionRoutes from "./routes/promotionRoutes.js";
 import userRoutes from "./routes/userRoutes.js"
 import transactionRouter from "./routes/transactionRoutes.js"
 
+
+dotenv.config();
 const app = express();
 //port
 
-const PORT =  8000;
+
+const port = process.env.PORT; 
 sequilize.sync()   
 
 // middleware
@@ -35,6 +38,6 @@ app.use('/user', userRoutes)
 
 //server
 
-app.listen(PORT, () => {
-  console.log(`server is running on the port ${PORT}`);
+app.listen(port, () => {
+  console.log(`server is running on the port ${port}`);
 });
