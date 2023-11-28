@@ -1,5 +1,6 @@
 import User from "../models/usersModels.js";
 import bcrypt from "bcryptjs"
+import jwt from "jsonwebtoken";
 // 1 - add user
 export const createUser = async (req, res) => {
   const { balance_usd, balance_usdt, email, username, password, status, role } = req.body;
@@ -35,7 +36,7 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
-// 3 - get single user
+
 // 3 - get single user
 export const getUserById = async (req, res) => {
   const { id } = req.params;
@@ -101,39 +102,38 @@ export const updateUser = async (req, res, next) => {
 
 // ----------------<><><><><></></></></>----------
 
-//register admin
-export async function register(req, res) {
-  try{
-      let { username, password } = req.body;
+//register user
+// export async function register(req, res) {
+//   try{
+//       let { username, password } = req.body;
 
-      let getdata = await AdminModel.create({
-          username,
-          password: await bcrypt.hash(password, 15)
-      });
+//       let getdata = await AdminModel.create({
+//           username,
+//           password: await bcrypt.hash(password, 15)
+//       });
 
-      if(getdata){
-          res.json({
-              success: true,
-              message:"Data Fetch Successfully",
-              data:getdata
-          });
-      }
-  }catch(err){
-      res.status(500).json({
-          success: false,
-          message:`Something went wrong, ${err.message}`,
-          data: null
-      })
-  }
-}
-//sign in admin 
+//       if(getdata){
+//           res.json({
+//               success: true,
+//               message:"Data Fetch Successfully",
+//               data:getdata
+//           });
+//       }
+//   }catch(err){
+//       res.status(500).json({
+//           success: false,
+//           message:`Something went wrong, ${err.message}`,
+//           data: null
+//       })
+//   }
+// }
+//sign in user 
 export async function signInUser (req, res) {
   try {
       const { username, password } = req.body;
-      const user = await AdminModel.findOne({
+      const user = await User.findOne({
           where: {username}
       });
-    
       // Verify password
       const passwordValid = await bcrypt.compare(password, user.password);
       if (!passwordValid || !user) {
@@ -153,3 +153,7 @@ export async function signInUser (req, res) {
       return res.status(500).send('Sign in error');
   }
 }
+
+
+        
+

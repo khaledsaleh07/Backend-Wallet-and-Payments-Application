@@ -11,6 +11,9 @@ User.hasMany(Promotion, {
   foreignKey: "userId",
   as: "promotions",
 });
+User.hasMany(Promotion,{
+  foreignKey:"userId",
+})
 
 Promotion.belongsTo(User, {
   foreignKey: "userId",
