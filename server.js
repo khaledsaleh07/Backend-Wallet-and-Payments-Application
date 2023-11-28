@@ -11,6 +11,9 @@ import notificationRoutes from "./routes/notificationRoutes.js";
 import promotionRoutes from "./routes/promotionRoutes.js";
 import userRoutes from "./routes/userRoutes.js"
 import transactionRouter from "./routes/transactionRoutes.js"
+import login from "./routes/logIn.js"
+
+import { verifyToken } from './middleware/auth.js';
 
 
 dotenv.config();
@@ -25,16 +28,17 @@ sequilize.sync()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors("*"));
+app.use('/login', login)
 
 app.get('/',(req,res)=>{
  res.send("hello world")
 })
 
 
-app.use('/transaction', transactionRouter )
-app.use('/notification', notificationRoutes)
-app.use('/promotion', promotionRoutes)
-app.use('/user', userRoutes)
+app.use('/transaction',verifyToken, transactionRouter )
+app.use('/notification', verifyToken , notificationRoutes)
+app.use('/promotion',verifyToken, promotionRoutes)
+app.use('/user', verifyToken, userRoutes)
 
 //server
 
