@@ -47,15 +47,15 @@ const User = db.define('user', {
  }
 });
 
-//validate Register User
-// function validateRegisterUser(obj){
-//   const schema = Joi.object({
-//      username:Joi.string().trim().min(2).max(100).required(),
-//      email:Joi.string().trim().min(5).max(100).required().email(),
-//      password:Joi.string().trim().min(8).required(),
-//   });
-//   return register.validate(obj);
-// }
+// validate Register User
+function validateRegisterUser(obj){
+  const schema = Joi.object({
+     username:Joi.string().trim().min(2).max(100).required(),
+     email:Joi.string().trim().min(5).max(100).required().email(),
+     password:Joi.string().trim().min(8).required(),
+  });
+  return register.validate(obj);
+}
 
 
 

@@ -1,4 +1,5 @@
 import User from "../models/usersModels.js";
+import bcrypt from "bcryptjs"
 // 1 - add user
 export const createUser = async (req, res) => {
   const { balance_usd, balance_usdt, email, username, password, status, role } = req.body;
@@ -9,7 +10,7 @@ export const createUser = async (req, res) => {
       balance_usdt,
       email,
       username,
-      password,
+      password : await bcrypt.hash(password,15),
       status,
       role,
     });
