@@ -35,10 +35,10 @@ app.get('/',(req,res)=>{
 })
 
 
-app.use('/transaction',verifyToken, transactionRouter )
-app.use('/notification', verifyToken , notificationRoutes)
-app.use('/promotion',verifyToken, promotionRoutes)
-app.use('/user', verifyToken, userRoutes)
+app.use('/transaction', transactionRouter )
+app.use('/notification',   notificationRoutes)
+app.use('/promotion', promotionRoutes)
+app.use('/user', userRoutes)
 
 //server
 
