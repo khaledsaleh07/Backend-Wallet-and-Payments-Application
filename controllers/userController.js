@@ -100,6 +100,100 @@ export const updateUser = async (req, res, next) => {
   }
 };
 
+
+//6- get all admin 
+export const getAllAdmins = async (req, res) => {
+  try {
+    const admins = await User.findAll({ where: { role: 'admin' } });
+    res.json(admins);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+ };
+
+ //7- get admin by id 
+
+ export const getAdminById = async (req, res) => {
+  const { id } = req.params;
+ 
+  try {
+   const admin = await User.findOne({ where: { id: id, role: 'admin' } });
+   if (admin) {
+     res.json(admin);
+   } else {
+     res.status(404).json({ error: 'Admin not found' });
+   }
+  } catch (error) {
+   console.error(error);
+   res.status(500).json({ error: 'Internal Server Error' });
+  }
+ };
+
+ // 8- get all users  role user 
+ 
+ export const getJustUsers = async (req, res) => {
+  try {
+   const justusers = await User.findAll({ where: { role: 'user' } });
+   res.json(justusers);
+  } catch (error) {
+   console.error(error);
+   res.status(500).json({ error: 'Internal Server Error' });
+  }
+ };
+
+
+
+// get just user by id 
+export const getJustUsersbyId = async(req, res) => {
+  const { id } = req.params;
+  try {
+    const justuserbyId = await User.findOne({where: {id :id , role: 'user'}})
+    if (justuserbyId) {
+      res.json(justuserbyId);
+    } else {
+      res.status(404).json({ error: 'User not found' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({error: 'Internal Server Error'});
+  }
+ }
+ 
+
+// get alll merchant 
+
+export const getAllMerchants = async (req, res) => {
+  try {
+   const merchants = await User.findAll({ where: { role: 'merchant' } });
+   res.json(merchants);
+  } catch (error) {
+   console.error(error);
+   res.status(500).json({ error: 'Internal Server Error' });
+  }
+ };
+
+
+
+ //  get merchant by id
+export const getMerchantById = async (req, res) => {
+  const { id } = req.params;
+ 
+  try {
+    const merchant = await User.findOne({ where: { id: id, role: 'merchant' } });
+    if (merchant) {
+      res.json(merchant);
+    } else {
+      res.status(404).json({ error: 'Merchant not found' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+ };
+ 
+
+
 // ----------------<><><><><></></></></>----------
 
 //register user

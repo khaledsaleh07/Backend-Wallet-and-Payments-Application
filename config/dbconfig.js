@@ -4,7 +4,7 @@ import { Sequelize } from "sequelize";
 const sequelize = new Sequelize('FINTECH', 'root', '', {
     dialect: 'mysql',
     host: "localhost",
-    port: '',
+    port: '3306',
   
  
 });
