@@ -30,6 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors("*"));
 app.use('/login', login)
 
+
 app.get('/',(req,res)=>{
  res.send("hello world")
 })

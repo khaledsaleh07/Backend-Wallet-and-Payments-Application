@@ -76,12 +76,12 @@ export const deleteUser = async (req, res) => {
 
 //5-update user
 export const updateUser = async (req, res, next) => {
-  const { userId } = req.params;
+  const { id } = req.params;
   try {
     if (req.body) {
       const [updatedRowsCount, updatedRows] = await User.update(
         { ...req.body },
-        { where: { id: userId } }
+        { where: { id } }
       );
 
       if (updatedRowsCount > 0 && updatedRows && updatedRows.length > 0) {
