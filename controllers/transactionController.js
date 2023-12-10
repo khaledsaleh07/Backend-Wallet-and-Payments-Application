@@ -1,4 +1,5 @@
 import Transaction from "../models/transactionsModels.js";
+import { Op } from 'sequelize';
 
 // Create main model
 const Id = Transaction.id; // Access the 'id' property of the 'Promotions' model
@@ -67,5 +68,27 @@ export const deleteTransaction = async (req, res) => {
     res.status(500).json({ message: "Something went wrong!", error: error.message });
   }
 };
+
+
+// 6 get all transaction made by spesific user 
+
+
+export async function getAllTransactionsByUser(req, res) {
+  const userId = req.params.userId; 
+  try {
+    const userTransactions = await Transaction.findAll({ 
+      where: { 
+        [Op.or]: [
+          { sender_id: userId },
+          { receiver_id: userId }
+        ]
+      } 
+    });
+    res.status(200).send(userTransactions);
+  } catch (error) {
+    console.error('Error retrieving transactions:', error.message);
+    res.status(500).send('Internal Server Error');
+  }
+}
 
 

@@ -5,7 +5,8 @@ import { addTransaction,
     getAllTransaction,
     updateTransaction,
    getOneTransaction,
-   deleteTransaction,} from "../controllers/transactionController.js"
+   deleteTransaction,
+   getAllTransactionsByUser} from "../controllers/transactionController.js"
 
 router.post("/addTransaction", addTransaction);
 
@@ -16,5 +17,8 @@ router.get("/:id", getOneTransaction);
 router.put("/update/:id",  updateTransaction);
 
 router.delete("/:TransactionId", deleteTransaction);
+
+router.get('/user/:userId', getAllTransactionsByUser);
+
 
 export default router;

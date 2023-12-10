@@ -58,12 +58,12 @@ export const getUserById = async (req, res) => {
   
 // 4 - delete user
 export const deleteUser = async (req, res) => {
-  const { userId } = req.params;
+  const { id } = req.params; // Make sure 'id' matches the route parameter
 
   try {
-    const result = await User.destroy({ where: { id: userId } });
+    const result = await User.destroy({ where: { id } });
     if (result === 0) {
-      return res.status(404).json({ message: "User not deleted" });
+      return res.status(404).json({ message: "User not found" });
     }
 
     res.status(200).json({ message: "User deleted successfully" });
@@ -76,12 +76,12 @@ export const deleteUser = async (req, res) => {
 
 //5-update user
 export const updateUser = async (req, res, next) => {
-  const { userId } = req.params;
+  const { id } = req.params;
   try {
     if (req.body) {
       const [updatedRowsCount, updatedRows] = await User.update(
         { ...req.body },
-        { where: { id: userId } }
+        { where: { id } }
       );
 
       if (updatedRowsCount > 0 && updatedRows && updatedRows.length > 0) {
@@ -234,20 +234,19 @@ export async function signInUser (req, res) {
           return res.status(404).json('Incorrect email and password combination');
       }
 
-
       // Authenticate user with jwt
       const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
  
       res.status(200).send({
           id: user.id,
           email: user.username,
+          role: user.role, // Add this line
           accessToken: token,
       });
   } catch (err) {
       return res.status(500).send('Sign in error');
   }
 }
-
 
         
 

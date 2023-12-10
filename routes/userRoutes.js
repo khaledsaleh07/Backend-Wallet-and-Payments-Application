@@ -7,7 +7,7 @@ router.post("/users", createUser);
 router.get("/users", getAllUsers);
 router.get('/users/:id', getUserById);
 router.delete('/users/:id', deleteUser);
-router.put('/users/:id', updateUser);
+router.patch('/users/:id', updateUser);
 router.get('/admins', getAllAdmins)
 router.get('/admins/:id', getAdminById)
 router.get('/justusers', getJustUsers)
