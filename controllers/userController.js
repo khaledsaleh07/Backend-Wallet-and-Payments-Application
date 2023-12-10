@@ -234,20 +234,19 @@ export async function signInUser (req, res) {
           return res.status(404).json('Incorrect email and password combination');
       }
 
-
       // Authenticate user with jwt
       const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
  
       res.status(200).send({
           id: user.id,
           email: user.username,
+          role: user.role, // Add this line
           accessToken: token,
       });
   } catch (err) {
       return res.status(500).send('Sign in error');
   }
 }
-
 
         
 
